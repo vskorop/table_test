@@ -1,24 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function Sort() {
-
-  const [input, setInput] = useState({});
-
-  const inputHandler = (e) => {
-    setInput((prev) => ({ ...prev, [e.target.name]: (e.target.value) }));
-    console.log(input);
-  };
+export default function Sort({inputHandler,submitHandler,resetSubmit}) {
 
   return (
-  <div className="form-control "> 
-    <form action="">
+  <div className="form-control"> 
+    <form onSubmit={submitHandler}>
       <div>  
         <select 
-        name='Row'
+        name='row'
         onChange={inputHandler}
         className="select w-full max-w-xs my-1">
           <option defaultValue={'Выберите колонку'} >Выберите колонку</option>
-          <option value={'date'}>Дата</option>
           <option value={'name'}>Название</option>
           <option value={'number'}>Количество</option>
           <option value={'distance'}>Расстояние</option>
@@ -32,11 +24,15 @@ export default function Sort() {
           <option defaultValue={'d'} disabled selected>Условие</option>
           <option value={'equals'}>Равно</option>
           <option value={'include'}>Содержит</option>
-          <option value={'asc'}>Больше</option>
-          <option value={'desc'}>Меньше</option>
+          <option value={'more'}>Больше</option>
+          <option value={'less'}>Меньше</option>
         </select>
       </div>
       <div>
+      <button 
+      onClick={resetSubmit}
+       type='submit'
+       className="btn-md">Отчистить</button>
         <input 
         // value={input}
         name='value'
@@ -44,6 +40,9 @@ export default function Sort() {
         type="text" 
         placeholder="Фильтр" 
         className="input w-full max-w-xs my-1" />
+       <button 
+       type='submit'
+       className="btn-md">Ok</button>
        </div>
     </form>
   </div>
