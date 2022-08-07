@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();
 const allEntries = require('./routes/allEntries.router');
 
 const app = express();
-const PORT = 3030;
+const { PORT } = process.env;
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'build')));
 

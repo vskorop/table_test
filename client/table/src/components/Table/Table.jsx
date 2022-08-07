@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllEntriesThunk } from '../../redux/actions/getAllEntries';
+import Pagination from '../Pagination/Pagination';
 
 export default function Table() {
   // const dispatch = useDispatch();
@@ -12,10 +13,16 @@ export default function Table() {
   const [data, setData] = useState(table)
   const [order, setOrder] = useState('ASC')
   const [input, setInput] = useState({});
-  
+  const [currentPage, setCurrentPage ] = useState(1)
+  const [rowPerPage ] = useState(5)
+
   useEffect(()=>{
     setData(table)
   }, [table])
+
+  const lastRowIndex = currentPage * rowPerPage
+  const firtsRowIndex = lastRowIndex - rowPerPage
+  const currentRow = data.slice(firtsRowIndex, lastRowIndex)
 
   const inputHandler = (e) => {
     setInput((prev) => ({ ...prev, [e.target.name]: (e.target.value) }));
@@ -86,6 +93,9 @@ const resetSubmit = () => {
   dispatch(getAllEntriesThunk())
 }
 
+const paginate = pageNumber => {
+  setCurrentPage(pageNumber)
+}
   return (
     <div className="App flex flex-col">
     <Sort data={data} inputHandler={inputHandler} submitHandler={submitHandler} resetSubmit={resetSubmit} />
@@ -101,7 +111,7 @@ const resetSubmit = () => {
       </tr>
     </thead>
     <tbody>
-     {data.length > 0? (data.map(elem => 
+     {data.length > 0? (currentRow.map(elem => 
       <tr key={elem.id}>
         <th>{elem.date.slice(0, 10)}</th>
         <th>{elem.name}</th>
@@ -113,7 +123,9 @@ const resetSubmit = () => {
       </tr>) }
     </tbody>
   </table>
-</div></div>
+</div>
+</div>
+<Pagination rowPerPage={rowPerPage} totalRows={data.length} paginate={paginate}/>
 </div>
   )
 }

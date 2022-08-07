@@ -6,7 +6,7 @@ export const getAll = (payload) => ({
   });
 
   export const getAllEntriesThunk = () => async (dispath) => {
-    const response = await fetch('http://localhost:3030/');
+    const response = await fetch('http://localhost:4000/')
     const data = await response.json();
     dispath(getAll(data.allEntries));
   };
