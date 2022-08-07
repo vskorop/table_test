@@ -7,13 +7,13 @@ export default function Pagination({rowPerPage, totalRows, paginate}) {
         pageNumbers.push(i+1)
     }
   return (
-    <div class="btn-group flex justify-center">
+    <div className="btn-group flex justify-center my-1">
         {pageNumbers.map(elem => 
             <a 
             onClick={()=> paginate(elem)}
             href="!#"
             key={elem}
-            class="btn btn-md">{elem}</a>)}
+            className="btn btn-md">{elem}</a>)}
     
   </div>
   )
