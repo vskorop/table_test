@@ -17,7 +17,7 @@ export default function Sort() {
         name='Row'
         onChange={inputHandler}
         className="select w-full max-w-xs my-1">
-          <option defaultValue={'d'} >Выберите колонку</option>
+          <option defaultValue={'Выберите колонку'} >Выберите колонку</option>
           <option value={'date'}>Дата</option>
           <option value={'name'}>Название</option>
           <option value={'number'}>Количество</option>
@@ -38,7 +38,7 @@ export default function Sort() {
       </div>
       <div>
         <input 
-        value={'d'}
+        // value={input}
         name='value'
         onChange={inputHandler}
         type="text" 
