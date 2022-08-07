@@ -5,6 +5,8 @@ const allEntries = require('./routes/allEntries.router');
 
 const app = express();
 const PORT = 3030;
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

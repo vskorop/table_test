@@ -34,7 +34,6 @@ export default function Sort({inputHandler,submitHandler,resetSubmit}) {
        type='submit'
        className="btn-md">Отчистить</button>
         <input 
-        // value={input}
         name='value'
         onChange={inputHandler}
         type="text" 
